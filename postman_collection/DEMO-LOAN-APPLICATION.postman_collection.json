@@ -1,0 +1,342 @@
+{
+	"info": {
+		"_postman_id": "db6f9541-f239-4404-bacc-2724e799f271",
+		"name": "DEMO-LOAN-APPLICATION",
+		"description": "# Introduction\n\nHey there, I have created this beautiful API documentation for api collection of aspire test.\n\n# Overview\n\nHey there, For this collection i have created one environment in which I am storing global variables which , I am using in many apis. That variables are as following :\n\n**url** : [http://127.0.0.1:8080/api](http://127.0.0.1:8080/apitoken)\n\n**token** : It's a token which is generating in register and login api response. just need to copy from there and paste it over here.\n\n# Authentication\n\nFor API authentication, We are using Laravel sanctum. You can do more R&D on it by following link\n\n[https://laravel.com/docs/9.x/sanctum#main-content](https://laravel.com/docs/9.x/sanctum#main-content)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "LOAN",
+			"item": [
+				{
+					"name": "Admin",
+					"item": [
+						{
+							"name": "Approve Loan",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "2|3q8rqgsKPvxLQ1IlYU74fAfWUbtRtp1ASJvPtjl7",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Accept",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "formdata",
+									"formdata": []
+								},
+								"url": {
+									"raw": "{{url}}/loans/approve-loan/2",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"loans",
+										"approve-loan",
+										"2"
+									]
+								}
+							},
+							"response": []
+						}
+					],
+					"description": "This folder contains one API by which we are changing status of LOAN from PENDING to APPROVED\n\n**Approve Loan:** It is responsible to approve loan only by admin user"
+				},
+				{
+					"name": "Create",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "amount_required",
+									"value": "5000.55",
+									"type": "text"
+								},
+								{
+									"key": "loan_term",
+									"value": "3",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/loans/create",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"loans",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Loans",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/loans",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"loans"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Show",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{url}}/loans/1",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"loans",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Weekly Repayment",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "urlencoded",
+							"urlencoded": [
+								{
+									"key": "amount",
+									"value": "100",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{url}}/loans/2/installment/4",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"loans",
+								"2",
+								"installment",
+								"4"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"description": "This folder contains all apis which responsible for loan related operations.\n\n- **Create :** It is responsible to create loan by any user\n- **Show :** It is responsible to retrieve all information of particular loan\n- **Loans :** It is responsible to retrieve all loans of particular user. If user is admin then admin can see all loans of all users.\n- **Weekly Repayment:** It is responsible for loan repayment related operation"
+		},
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "name",
+							"value": "test1",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "test1@mailinator.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "1234567890",
+							"type": "text"
+						},
+						{
+							"key": "confirm_password",
+							"value": "1234567890",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Logout",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "{{token}}",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "{{url}}/logout",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"logout"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "email",
+							"value": "test1@mailinator.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "123456789",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "{{url}}/login",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
